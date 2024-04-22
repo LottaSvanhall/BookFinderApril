@@ -1,18 +1,18 @@
 import Author from "../model/Authors.js";
 
 export default function (server, mongoose) {
-/*
-  // Skapar ett schema för "users", vilket definierar strukturen för varje "user"-dokument i databasen.
-  const authorSchema = new mongoose.Schema({
-    fullname: String,  // Varje "user" kommer att ha ett "username".
-    book: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Book' }]
-  });
-
-    //Skapar en Mongoose-modell baserat på usersSchema.
-    //Detta möjliggör för oss att skapa, läsa, uppdatera och radera (CRUD) dokument i vår "users"-samling (collection).
+  /*
+    // Skapar ett schema för "users", vilket definierar strukturen för varje "user"-dokument i databasen.
+    const authorSchema = new mongoose.Schema({
+      fullname: String,  // Varje "user" kommer att ha ett "username".
+      book: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Book' }]
+    });
   
-  const Author = mongoose.model('Author', authorSchema);
-*/
+      //Skapar en Mongoose-modell baserat på usersSchema.
+      //Detta möjliggör för oss att skapa, läsa, uppdatera och radera (CRUD) dokument i vår "users"-samling (collection).
+    
+    const Author = mongoose.model('Author', authorSchema);
+  */
   // Express route för att hämta böcker med författare
   server.get('/api/authors', async (req, res) => {
     try {
@@ -25,6 +25,11 @@ export default function (server, mongoose) {
 
   // Skapar en GET-route för att hämta en specifik användare med ett specifikt ID.
   server.get('/api/authors/:id', async (req, res) => {
+    
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ message: "Felaktigt id" });
+    }
+
     try {
       const author = await Author.findById(req.params.id); // Hämtar användaren med ID från databasen.
       if (!author) {

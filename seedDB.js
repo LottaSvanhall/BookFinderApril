@@ -43,11 +43,13 @@ async function createBooks(amount, newAuthor) {
   const bookList = []
   console.log("godnatt")
   console.log(newAuthor);
+  const genresList = ['feelgood', 'barn', 'deckare', 'romantik', 'rysare'];
   for (let i = 0; i < amount; i++) {
     const newBook = new Book({
       title: faker.lorem.words(3),
       author: newAuthor,
-      genre: faker.music.genre(),
+
+      genre: genresList[faker.number.int(5)],
       year: faker.number.int({ min: 1924, max: 2024 }),
       book_grade: faker.number.int({ min: 1, max: 5 }),
       info: faker.lorem.sentences(2)
