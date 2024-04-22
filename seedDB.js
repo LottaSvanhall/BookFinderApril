@@ -1,13 +1,9 @@
 import { faker } from '@faker-js/faker';
 import mongoose from 'mongoose';
-//import Author from "./api/authors.js";
-//import Book from "./api/books.js";
 import Author from "./model/Authors.js";
 import Book from "./model/Books.js";
 
 console.log("Start seeding database!")
-/*const randomName = faker.person.fullName();
-console.log(randomName)*/
 
 async function seedDB() {
   try {
@@ -16,7 +12,8 @@ async function seedDB() {
     const bookList = await createBooks(3, authorList[0])
     console.log("AuthorList - ", authorList)
     console.log("BookList - ", bookList)
-  } catch (error) {
+  }
+  catch (error) {
     console.log(`Errormessage: ${error}`)
   }
 }
@@ -29,9 +26,6 @@ async function createAuthors(amount) {
       //book:
     })
     await newAuthor.save()
-    console.log("hej på dig")
-    console.log(newAuthor)
-
     authorList.push(newAuthor)
     console.log(`New author - ${newAuthor.fullname} - has been created.`)
   }
@@ -41,8 +35,6 @@ async function createAuthors(amount) {
 
 async function createBooks(amount, newAuthor) {
   const bookList = []
-  console.log("godnatt")
-  console.log(newAuthor);
   const genresList = ['feelgood', 'barn', 'deckare', 'romantik', 'rysare'];
   for (let i = 0; i < amount; i++) {
     const newBook = new Book({

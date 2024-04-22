@@ -1,25 +1,7 @@
 import Book from "../model/Books.js";
 
 export default function (server, mongoose) {
-  /*
-    // Skapar ett schema för "users", vilket definierar strukturen för varje "user"-dokument i databasen.
-    const bookSchema = new mongoose.Schema({
-      title: String,  // Varje "user" kommer att ha ett "username".
-      author: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Author' }],
-      genre: String,
-      year: Number,
-      book_grade: Number,
-      info: String
-  
-    });
-  
-    
-      //Skapar en Mongoose-modell baserat på bookSchema.
-      //Detta möjliggör för oss att skapa, läsa, uppdatera och radera (CRUD) dokument i vår "users"-samling (collection).
-    
-    const Book = mongoose.model('Book', bookSchema);
-  */
-  // Express route för att hämta böcker med författare
+
   server.get("/api/books", async (req, res) => {
     try {
       const books = await Book.find().populate("author");
@@ -32,8 +14,8 @@ export default function (server, mongoose) {
 
   server.get("/api/books/all", async (req, res) => {
     try {
-      const page = parseInt(req.query.page) || 1 // aktuell sida
-      const limit = parseInt(req.query.limit) || 10 // antal elementer på en sida
+      const page = parseInt(req.query.page) || 1
+      const limit = parseInt(req.query.limit) || 10
 
       const totalBooks = await Book.countDocuments();
       const totalPages = Math.ceil(totalBooks / limit);
@@ -54,21 +36,6 @@ export default function (server, mongoose) {
     }
   });
 
-
-  // Skapar en GET-route för att söka på en boktitel.
-  /*server.get("/api/books/:id", async (req, res) => {
-  try {
-    const book = await Book.find(req.params.ObjectId); // Hämtar bok med ID från databasen.
-    if (!book) {
-      return res.status(404).json({ message: "2Boken hittades inte2" });
-    }
-    res.json(book);
-  } catch (error) {
-    res.status(500).json({ message: "Ett fel uppstod på servern vid hämtning av en bok vid sökning." });
-  }
-  });
-  */
-
   server.get("/api/books/:id", async (req, res) => {
     try {
       const book = await Book.findById(req.params.id, req.query.fields); // Hämtar bok med ID från databasen.
@@ -76,38 +43,12 @@ export default function (server, mongoose) {
         return res.status(404).json({ message: "Boken hittades inte" });
       }
       res.json(book);
-    } catch (error) {
+    }
+    catch (error) {
       res.status(500).json({ message: "Ett fel uppstod på servern vid hämtning av en bok." });
     }
   });
-  /*
-    // Skapar en GET-route för att söka på en boktitel.
-    server.get("/api/books/:id?fields=title=true", async (req, res) => {
-      try {
-        const book = await Book.find(req.params.ObjectId); // Hämtar bok med ID från databasen.
-        if (!book) {
-          return res.status(404).json({ message: "Boken hittades inte2" });
-        }
-        res.json(book);
-      } catch (error) {
-        res.status(500).json({ message: "Ett fel uppstod på servern vid hämtning av en bok vid sökning." });
-      }
-    });*/
 
-  // Skapar en GET-route för att hämta alla böcker.
-  /*server.get('/api/books', async (req, res) => {
-    try {
-      const book = await Book.find();
-      if (!book) {
-        return res.status(404).json({ message: "Boken hittades inte" });
-      }
-      res.json(book);
-    } catch (error) {
-      res.status(500).json({ message: "Ett fel uppstod på servern vid hämtning av en bok." });
-    }
-  });*/
-
-  // Skapar en POST-route för att lägga till en ny användare.
   server.post('/api/books', async (req, res) => {
     try {
       const newBook = new Book(
@@ -121,17 +62,15 @@ export default function (server, mongoose) {
         }
       )
 
-
-      const savedBook = await newBook.save() // Sparar den nya användaren i databasen.
-      res.status(201).json(savedBook); // Skickar tillbaka den sparade användaren som JSON.
-    } catch (error) {
+      const savedBook = await newBook.save()
+      res.status(201).json(savedBook);
+    }
+    catch (error) {
       console.error(error);
       res.status(500).json({ message: "Ett fel uppstod på servern vid skapande av ny bok." });
     }
   });
 
-  // Skapar en PUT-route för att uppdatera en användare med ett specifikt ID.
-  // Skapar en PUT-route för att uppdatera en bok med ett specifikt ID.
   server.put('/api/books/:id', async (req, res) => {
     try {
       const updatedBook = await Book.findByIdAndUpdate(req.params.id, req.body);
@@ -139,21 +78,22 @@ export default function (server, mongoose) {
         return res.status(404).json({ message: 'Bok hittades inte' });
       }
       res.json(updatedBook);
-    } catch (error) {
+    }
+    catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Ett fel uppstod på servern vid uppdatering av bok.' });
     }
   });
 
-  // Skapar en DELETE-route för att radera en bok med ett specifikt ID.
   server.delete('/api/books/:id', async (req, res) => {
     try {
       const deletedBook = await Book.findByIdAndDelete(req.params.id);
       if (!deletedBook) {
         return res.status(404).json({ message: "Boken hittades inte" });
       }
-      res.json({ message: "Boken har raderats!" }); // Bekräftelse på att boken har raderats.
-    } catch (error) {
+      res.json({ message: "Boken har raderats!" });
+    }
+    catch (error) {
       console.error(error);
       res.status(500).json({ message: "Ett fel uppstod på servern vid radering av boken." });
     }
