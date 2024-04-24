@@ -23,7 +23,6 @@ async function createAuthors(amount) {
   for (let i = 0; i < amount; i++) {
     const newAuthor = new Author({
       fullname: faker.person.fullName(),
-      //book:
     })
     await newAuthor.save()
     authorList.push(newAuthor)
