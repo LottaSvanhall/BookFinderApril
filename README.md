@@ -13,4 +13,4 @@ When done start the server in terminal by enter – node server.js
 Seeding the database with dummy data is done by running - node seedDB.js
 
 
-# Link to my Postman workspace – https://www.postman.com/lottasv/workspace/my-workspace
+Link to my Postman workspace – https://www.postman.com/lottasv/workspace/my-workspace
