@@ -38,7 +38,7 @@ export default function (server, mongoose) {
 
   server.get("/api/books/:id", async (req, res) => {
     try {
-      const book = await Book.findById(req.params.id, req.query.fields); // Hämtar bok med ID från databasen.
+      const book = await Book.findById(req.params.id, req.query.fields);
       if (!book) {
         return res.status(404).json({ message: "Boken hittades inte" });
       }
