@@ -1,3 +1,6 @@
+Hej Läraren, jag gör ett försök med att satsa på VG i detta projekt :)
+//mvh Lotta
+
 # Setup
 All needed info about this BookFinder API will be found here on my Github account.
 
@@ -14,6 +17,7 @@ mongoose.connect("mongodb+srv://<Username>:<Password>@cluster0.nyncb7g.mongodb.n
 When done start the server in terminal by enter ${\color{blue} node \space server.js}$
 
 Seeding the database with dummy data is done by running ${\color{blue} node \space seedDB.js}$
-
+Before you run the seedDB.js make sure that you also in this file, enter your own connection string values (username and password) to the MongoDB database.
+See example above.
 
 Link to my Postman workspace – https://www.postman.com/lottasv/workspace/my-workspace
