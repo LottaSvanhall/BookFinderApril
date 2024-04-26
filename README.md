@@ -1,4 +1,4 @@
-Hej Läraren, jag gör ett försök med att satsa på VG i detta projekt :)
+# Hej Läraren, jag gör ett försök med att satsa på VG i detta projekt :)
 //mvh Lotta
 
 # Setup
