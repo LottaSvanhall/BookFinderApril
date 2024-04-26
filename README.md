@@ -17,5 +17,3 @@ Seeding the database with dummy data is done by running ${\color{blue} node \spa
 
 
 Link to my Postman workspace – https://www.postman.com/lottasv/workspace/my-workspace
-
-https://www.postman.com/lottasv/workspace/my-workspace/collection/33841427-c8c16512-a141-4c3e-82b8-cbd9e167ec02?action=share&creator=33841427
