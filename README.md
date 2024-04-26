@@ -1,5 +1,5 @@
-# Hej Läraren, jag gör ett försök med att satsa på VG i detta projekt :)
-# //mvh Lotta
+Hej Läraren, jag gör ett försök med att satsa på VG i detta projekt :)
+//mvh Lotta
 
 # Setup
 All needed info about this BookFinder API will be found here on my Github account.
