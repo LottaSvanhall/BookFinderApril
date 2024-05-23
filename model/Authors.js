@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
 
 const authorSchema = new mongoose.Schema({
-  fullname: String,
-  book: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Book' }]
+  fullname: String
 });
 
 const Author = mongoose.model('Author', authorSchema);
